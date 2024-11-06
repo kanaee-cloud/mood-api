@@ -22,11 +22,16 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const snapshot = await db.collection("message").get();
-    const message = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    res.status(200).json(message);
+    const message = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      const createdAt = data.createdAt.toDate().toISOString();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt,
+      };
+    });
+    res.status(200).json({ data: message });
   } catch (error) {
     res.status(500).json({ error: "Error fetching users" });
   }
