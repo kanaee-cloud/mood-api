@@ -7,6 +7,10 @@ node_modules/
 # Ignore Firebase Admin JSON (credentials)
 mood-firebase-adminsdk-l05bm-38d7867224.json
 
+mood-firebase-adminsdk-base64.txt
+
+
+
 # Ignore logs
 logs/
 *.log
